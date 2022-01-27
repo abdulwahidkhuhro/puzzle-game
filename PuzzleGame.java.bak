@@ -2,43 +2,51 @@ import java.awt.*;
 import java.awt.event.*;
 public class PuzzleGame implements ActionListener{
 	Frame window = new Frame();
-	Button[] button = new Button[16];
+	Button[][] button = new Button[4][4];
+	int[][] positions = {{0,1,2,3},{4,5,6,7},{8,9,10,11},{12,13,14,15}};
 	Font font = new Font("SansSerif", Font.BOLD, 45);
-	
+	private int xOfEmpty;
+	private int yOfEmpty;
 	public PuzzleGame(){
 		window.setBounds(0,0,510,510);
 		window.setLayout(null);
 		window.setTitle(window.getWidth()+"");
 		
-		for(int i = 0; i < button.length; i++){
-			if( i == 0)
-				button[i] = new Button("");
-			else
-				button[i] = new Button(i+"");
-			button[i].setFont(font);
-			button[i].addActionListener(this);
-			window.add(button[i]);
+		for(int i = 0,k = 1; i < button.length; i++){
+			for(int j = 0; j < button[i].length; j++){
+				if( i == 0 && j == 0){
+					button[i][j] = new Button("");
+				}
+				else{
+					button[i][j] = new Button(k+"");
+				}
+				
+				button[i][j].setFont(font);
+				button[i][j].addActionListener(this);
+				window.add(button[i][j]);
+				k++;
+			}
 		}
 		
-		button[0].setBounds(10,35,125,125);
-		button[1].setBounds(130,35,125,125);
-		button[2].setBounds(255,35,125,125);
-		button[3].setBounds(380,35,125,125);
+		button[0][0].setBounds(10,35,125,125);
+		button[0][1].setBounds(130,35,125,125);
+		button[0][2].setBounds(255,35,125,125);
+		button[0][3].setBounds(380,35,125,125);
 		
-		button[4].setBounds(10,155,125,125);
-		button[5].setBounds(130,155,125,125);
-		button[6].setBounds(255,155,125,125);
-		button[7].setBounds(380,155,125,125);
+		button[1][0].setBounds(10,155,125,125);
+		button[1][1].setBounds(130,155,125,125);
+		button[1][2].setBounds(255,155,125,125);
+		button[1][3].setBounds(380,155,125,125);
 		
-		button[8].setBounds(10,275,125,125);
-		button[9].setBounds(130,275,125,125);
-		button[10].setBounds(255,275,125,125);
-		button[11].setBounds(380,275,125,125);
+		button[2][0].setBounds(10,275,125,125);
+		button[2][1].setBounds(130,275,125,125);
+		button[2][2].setBounds(255,275,125,125);
+		button[2][3].setBounds(380,275,125,125);
 		
-		button[12].setBounds(10,395,125,125);
-		button[13].setBounds(130,395,125,125);
-		button[14].setBounds(255,395,125,125);
-		button[15].setBounds(380,395,125,125);
+		button[3][0].setBounds(10,395,125,125);
+		button[3][1].setBounds(130,395,125,125);
+		button[3][2].setBounds(255,395,125,125);
+		button[3][3].setBounds(380,395,125,125);
 		
 		
 		window.setTitle(window.getWidth()+"");
@@ -46,89 +54,87 @@ public class PuzzleGame implements ActionListener{
 	}
 	
 	public void actionPerformed(ActionEvent e){
-		if(button[0] == e.getSource()){
-			moveBox(Integer.parseInt(button[0].getLabel()));
-		}else if(button[1] == e.getSource()){
-			moveBox(Integer.parseInt(button[1].getLabel()));
-		}else if(button[2] == e.getSource()){
-			moveBox(Integer.parseInt(button[2].getLabel()));
-		}else if(button[3] == e.getSource()){
-			moveBox(Integer.parseInt(button[3].getLabel()));
-		}else if(button[4] == e.getSource()){
-			moveBox(Integer.parseInt(button[4].getLabel()));
-		}else if(button[5] == e.getSource()){
-			moveBox(Integer.parseInt(button[5].getLabel()));
-		}else if(button[6] == e.getSource()){
-			
-		}else if(button[7] == e.getSource()){
-			
-		}else if(button[8] == e.getSource()){
-			
-		}else if(button[9] == e.getSource()){
-			
-		}else if(button[10] == e.getSource()){
-			
-		}else if(button[11] == e.getSource()){
-			
-		}else if(button[12] == e.getSource()){
-			
-		}else if(button[13] == e.getSource()){
-			
-		}else if(button[14] == e.getSource()){
-			
-		}else if(button[15] == e.getSource()){
-			
+		if(button[0][0] == e.getSource()){
+			moveBox(0,0);
+		}else if(button[0][1] == e.getSource()){
+			moveBox(0,1);
+		}else if(button[0][2] == e.getSource()){
+			moveBox(0,2);
+		}else if(button[0][3] == e.getSource()){
+			moveBox(0,3);
+		}else if(button[1][0] == e.getSource()){
+			moveBox(1,0);
+		}else if(button[1][1] == e.getSource()){
+			moveBox(1,1);
+		}else if(button[1][2] == e.getSource()){
+			moveBox(1,2);
+		}else if(button[1][3] == e.getSource()){
+			moveBox(1,3);
+		}else if(button[2][0] == e.getSource()){
+			moveBox(2,0);
+		}else if(button[2][1] == e.getSource()){
+			moveBox(2,1);
+		}else if(button[2][2] == e.getSource()){
+			moveBox(2,2);
+		}else if(button[2][3] == e.getSource()){
+			moveBox(2,3);
+		}else if(button[3][0] == e.getSource()){
+			moveBox(3,0);
+		}else if(button[3][1] == e.getSource()){
+			moveBox(3,1);
+		}else if(button[3][2] == e.getSource()){
+			moveBox(3,2);
+		}else if(button[3][3] == e.getSource()){
+			moveBox(3,3);
 		}
 	}
 	
-	private void moveBox(int selected){
-		int left = selected - 1,up = selected - 4,right = selected + 1,down = selected + 4;
-		if(up < 0){
-			/*if(left < 0){
-					if(indexOfEmptyBox != -2){
-						int destination = indexOfEmptyBox(left, up, right, down);
-						button[destination].setLabel(selected+"");
-						button[selected].setLabel("");
-					}
-				}*/
-			int destination = indexOfEmptyBox(left, up, right, down);
-			if(destination != -2){
-				button[destination].setLabel(selected+"");
-				button[selected].setLabel("");
+	public void moveBox(int a, int b){
+		int left = b-1;
+		int right = b+1;
+		int up = a-1;
+		int down = a+1;
+		if(left >= 0){
+			if(button[a][left].getLabel().equals("")){
+					button[a][left].setLabel(button[a][b].getLabel());
+					button[a][b].setLabel("");
 			}
-		}else if(down > 15){
-			int destination = indexOfEmptyBox(left, up, right, down);
-			if(destination != -2){
-				button[destination].setLabel(selected+"");
-				button[selected].setLabel("");
-			}
-		}else{
-			
 		}
 		
-	}
-	
-	private void ifPossibleMoveIs(){
+		if(right <=3){
+			if(button[a][right].getLabel().equals("")){
+					button[a][right].setLabel(button[a][b].getLabel());
+					button[a][b].setLabel("");
+			}
+		}
+		
+		if(up >=0){
+			if(button[up][b].getLabel().equals("")){
+					button[up][b].setLabel(button[a][b].getLabel());
+					button[a][b].setLabel("");
+			}
+		}
+		
+		if(down <= 3){
+			if(button[down][b].getLabel().equals("")){
+					button[down][b].setLabel(button[a][b].getLabel());
+					button[a][b].setLabel("");
+			}
+		}
+		
+		System.out.println("Button's left => "+"a : "+left+" b : "+b);
+		System.out.println("Button point : "+"a : "+a+" b:"+b);
+		System.out.println("Button's right => "+"a : "+right+" b : "+b);
+		System.out.println("Button's up => "+"a : "+a+" b : "+up);
+		System.out.println("Button's down => "+"a : "+down+" b : "+b);
+		
+		
+		System.out.println();
+		System.out.println();
+		System.out.println();
 		
 	}
-	private int indexOfEmptyBox(int left, int up, int right, int down){
-		if(isEmpty(left)){
-			return left;
-		}else if(isEmpty(up)){
-			return up;
-		}else if(isEmpty(right)){
-			return right;
-		}else if(isEmpty(down)){
-			return down;
-		}
-		return -2;
-	}
-	
-	private boolean isEmpty(int choice){
-		if(choice < 0)
-			return false;
-		return button[choice].getLabel().equals("");
-	}
+
 	public static void main(String[] args){
 		new PuzzleGame();
 	}
