@@ -1,31 +1,48 @@
-import javax.swing.*;
+import java.awt.*;
 public class PuzzleGame {
-	private JFrame window = new JFrame("Puzzle Game");
-	private JPanel windowPanel = new JPanel();
-	private JButton[] button = new JButton[16];
+	Frame window = new Frame();
+	Button[] button = new Button[16];
+	Font font = new Font("SansSerif", Font.BOLD, 45);
+	
 	public PuzzleGame(){
-		window.setBounds(0,0,530,530);
-		windowPanel.setLayout(null);
+		window.setBounds(0,0,510,510);
+		window.setLayout(null);
+		window.setTitle(window.getWidth()+"");
+		
+		button[0].setBounds(10,35,125,125);
+		button[1].setBounds(130,35,125,125);
+		button[2].setBounds(255,35,125,125);
+		button[3].setBounds(380,35,125,125);
+		
+		button[4].setBounds(10,155,125,125);
+		button[5].setBounds(130,155,125,125);
+		button[6].setBounds(255,155,125,125);
+		button[7].setBounds(380,155,125,125);
+		
+		button[8].setBounds(10,275,125,125);
+		button[9].setBounds(130,275,125,125);
+		button[10].setBounds(255,275,125,125);
+		button[11].setBounds(380,275,125,125);
+		
+		button[12].setBounds(10,395,125,125);
+		button[13].setBounds(130,395,125,125);
+		button[14].setBounds(255,395,125,125);
+		button[15].setBounds(380,395,125,125);
+		
 		for(int i = 0; i < button.length; i++){
-			button[i] = new JButton(i+"");
-			System.out.println(i);
+			if( i == 0)
+				button[i] = new Button();
+			else
+				button[i] = new Button(i+"");
+			button[i].setFont(font);
+			window.add(button[i]);
 		}
 		
-		/*for(int i = 1; i < button.length; i++){
-			button[i].setText(i+"");
-		}*/
-		button[0].setBounds(5,5,125,125);
-		button[1].setBounds(130,5,125,125);
-		button[2].setBounds(135,5,125,125);
-		button[3].setBounds(140,5,125,125);
 		
-		windowPanel.add(button[0]);
-		window.add(windowPanel);
-		window.setVisible(true);
+		window.setTitle(window.getWidth()+"");
+		window.show();
 	}
-	
 	public static void main(String[] args){
-		System.out.println("Main");
 		new PuzzleGame();
 	}
 }
