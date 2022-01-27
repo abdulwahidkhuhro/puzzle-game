@@ -1,0 +1,31 @@
+import javax.swing.*;
+public class PuzzleGame {
+	private JFrame window = new JFrame("Puzzle Game");
+	private JPanel windowPanel = new JPanel();
+	private JButton[] button = new JButton[16];
+	public PuzzleGame(){
+		window.setBounds(0,0,530,530);
+		windowPanel.setLayout(null);
+		for(int i = 0; i < button.length; i++){
+			button[i] = new JButton(i+"");
+			System.out.println(i);
+		}
+		
+		/*for(int i = 1; i < button.length; i++){
+			button[i].setText(i+"");
+		}*/
+		button[0].setBounds(5,5,125,125);
+		button[1].setBounds(130,5,125,125);
+		button[2].setBounds(135,5,125,125);
+		button[3].setBounds(140,5,125,125);
+		
+		windowPanel.add(button[0]);
+		window.add(windowPanel);
+		window.setVisible(true);
+	}
+	
+	public static void main(String[] args){
+		System.out.println("Main");
+		new PuzzleGame();
+	}
+}
